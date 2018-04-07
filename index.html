@@ -451,7 +451,7 @@ function init_stripe(mail){
         $("#customButton").hide();
         $("#payment-tagline").hide();
       }).fail(function(return_json_message) {
-        $("#error-payment").html(return_json_message.message);
+        $("#error-payment").html(return_json_message);
         $("#error-payment").show();
         $("#customButton").show();
       });
