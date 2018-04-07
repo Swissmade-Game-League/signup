@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Register</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
+  <script defer src="js/fontawesome-all.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+</head>
+
+<body>
+  <div class="text-center">
+    <h1>Sign Up</h1>
+  </div>
+  <div class="container" style="padding-bottom:2em;">
+    <div id="registration_area">
+      <form class="form-horizontal"  accept-charset="UTF-8">
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="firstname">
+            Firstname *
+          </label>
+          <div class="col-sm-9">
+            <input type="text" name="firstname" class="form-control" required="required">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="lastname">
+            Lastname *
+          </label>
+          <div class="col-sm-9">
+            <input type="text" name="lastname" class="form-control" required="required">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="nickname">
+            Nickname *
+          </label>
+          <div class="col-sm-9">
+            <input type="text" name="nickname" class="form-control" required="required">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="password">
+            Password *
+          </label>
+          <div class="col-sm-9">
+            <input type="password" name="password" class="form-control" required="required">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="password_confirmation">
+            Confirm Password *
+          </label>
+          <div class="col-sm-9">
+            <input type="password" name="password_confirmation" class="form-control" required="required">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="mail">
+            E-Mail *
+          </label>
+          <div class="col-sm-9">
+            <input type="email" name="mail" class="form-control" required="required">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="birthdate">
+            Birthdate *
+          </label>
+          <div class="col-sm-9">
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+              <input type="text" name="birthdate" class="form-control" required="required" placeholder="yyyy-mm-dd">
+              <div class="input-group-addon">
+                <span class="fas fa-calendar-alt"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="gender">
+            Gender *
+          </label>
+          <div class="col-sm-9">
+            <select class="form-control" id="gender-select">
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="team_name">
+            Team name
+          </label>
+          <div class="col-sm-9">
+            <input type="text" name="team_name" class="form-control" required="required">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="favorite_game">
+            What's your favorite game ?
+          </label>
+          <div class="col-sm-9">
+            <input type="text" name="favorite_game" class="form-control" required="required">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="dev">
+            Are you a game developper ? *
+          </label>
+          <div class="col-sm-9">
+            <label class="radio-inline"><input type="radio" name="dev" value="true">Yes</label>
+            <label class="radio-inline"><input type="radio" name="dev" value="false">No</label>
+          </div>
+        </div>
+      </form>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3 text-right">
+            <h3> Address </h3>
+          </div>
+        </div>
+        <form class="form-horizontal" id="new_address_form" accept-charset="UTF-8" data-remote="true">
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="street-modal-markup">
+              Street and n°
+            </label>
+            <div class="col-sm-9">
+              <select name="address[street]" id="street-modal-markup" class="form-control select2-hidden-accessible" style="width:100%;" tabindex="-1" aria-hidden="true"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 col-xs-12 control-label" for="locality-modal-markup">Locality</label>
+            <div class="col-sm-2 col-xs-4">
+              <input type="text" name="postal_code" id="postal_code-modal-markup" class="form-control" readonly="readonly" required="required">
+            </div>
+            <div class="col-sm-7 col-xs-8">
+              <input type="text" name="locality" id="locality-modal-markup" class="form-control" readonly="readonly" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="state-modal-markup">State</label>
+            <div class="col-sm-9">
+              <input type="text" name="state" id="state-modal-markup" class="form-control" readonly="readonly" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="country-modal-markup">Country</label>
+            <div class="col-sm-9">
+              <input type="text" name="country" id="country-modal-markup" class="form-control" readonly="readonly" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-3 col-sm-9">
+              <label>
+                <input type="checkbox" id="rules-check"> I read and accept the <a href="https://smgl.ch/rules/2018" required="required">rules</a>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="container text-center">
+        <div id="error-form" class="alert alert-danger" role="alert" hidden="true"></div>
+        <button id="submit_btn" type="button" class="btn btn-primary" disabled="true">Register</button>
+      </div>
+    </div>
+    <div id="payment_area" style="display:none;">
+      <div class="jumbotron">
+        <h1 id="payment-title">You're soon ready to play !</h1>
+        <p id="payment-tagline">
+          <h4>Registered participants have the right to :</h4>
+          <ul>
+            <li>
+            A Beta Steam key for the latest version of
+            the game <a href="https://maniax-games.com/Retimed/">RETIMED</a>
+            </li>
+            <li>
+            Free participation in every Minor and Major,
+            within the limits of the available slots.
+            </li>
+            <li>
+            Priority over punctual participants when
+            registering for Minors and Majors.
+            </li>
+            <li>
+            The integration of their player profile in the
+            global ranking
+            </li>
+            <li>
+            An invitation to the Grand Final for the best
+            of them
+            </li>
+          </ul>
+          <h4>Registered participants do not have the right to:</h4>
+          <ul>
+            <li>
+            Free entrance to the event hosting the
+            Minors and Majors. They are required to
+            pay the costs relative to the events hosting
+            the Minors and Majors (entry fee, at maxium
+            20 CHF for Minors)
+            </li>
+            <li>
+            Systematic technical support in the event of
+            a set-up error. Support is available within
+            the availability of the studio only.
+            </li>
+          </ul>
+        </p>
+        <p>
+          <div id="error-payment" class="alert alert-danger" role="alert" hidden="true"></div>
+        </p>
+        <div class="col-md-12">
+          <button id="customButton" class="btn btn-primary btn-lg" style="width:100%;font-size:32px;">
+            Pay by card
+            <span class="fab fa-cc-visa" aria-hidden="true"></span>
+            <span class="fab fa-cc-mastercard" aria-hidden="true"></span>
+            <span class="fab fa-cc-visa" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+var url = "https://preprod.sgl.cyprx.cloud";
+var addr_selected;
+var user_token;
+var user_id;
+var user_mail;
+$( document ).ready(function() {
+  init_select2();
+  init_post_btn();
+  $.ajax({
+    url: url+"/genders",
+    type: "GET",
+    success: function(result){
+      $.each(result, function(key, value){
+        $("#gender-select").append("<option value='"+value["id"]+"'>"+value["name"]+"</option>");
+      })
+    },
+    error: function(result){
+      $("#gender-select").append("<option value='1'>Male</option>");
+      $("#gender-select").append("<option value='2'>Female</option>");
+    }
+  });
+  add_check_rules_listener();
+});
+function init_select2(){
+  var ress = [];
+  $("#street-modal-markup").select2({
+    allowClear: true,
+    minimumInputLength: 3,
+    ajax: {
+      url: url+"/validate-addr",
+      dataType: 'json',
+      type: "POST",
+      data: function (params) {
+        ress = []
+        return {
+          query: params.term
+        };
+      },
+      processResults: function (data) {
+        if(data){
+          data.text = data.formatted_address;
+          data.id = data.street_name;
+          ress.push(data);
+        }
+        return {
+          results: ress, more: false
+        }
+      }
+    },
+    templateSelection: format_select2_selection
+  });
+}
+
+function format_select2_selection(item){
+  var result = item.street_name+" ";
+  if(item.street_number){
+    result += item.street_number;
+  }
+  select2_changed(item);
+  return result;
+}
+
+function select2_changed(addr){
+  addr_selected = addr;
+  if(addr){
+    $('<input>').attr({
+      type: 'hidden',
+      name: 'address[number]',
+      value: addr.street_number
+    }).appendTo('#new_address_form');
+    $("#locality-modal-markup")[0].value = addr.city;
+    $("#state-modal-markup")[0].value = addr.state;
+    $("#country-modal-markup")[0].value = addr.country;
+    $("#postal_code-modal-markup")[0].value = addr.zip_code;
+    if ($('#rules-check').is(':checked')) {
+      $('#submit_btn').prop('disabled', false);
+    }
+  }
+}
+
+function add_check_rules_listener(){
+  $('#rules-check').change(
+    function(){
+      if ($(this).is(':checked') && addr_selected) {
+        $('#submit_btn').prop('disabled', false);
+      }else{
+        $('#submit_btn').prop('disabled', true);
+      }
+    }
+  );
+}
+
+function init_post_btn(){
+  $("#submit_btn").click(function(){
+    $.ajax({
+      url: url+"/users",
+      type: "POST",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(get_data()),
+      success: road_to_payment,
+      error: function(result){
+        $("#error-form").html(result.responseJSON.message);
+        $("#error-form").show();
+      }
+    })
+  });
+}
+
+var road_to_payment = function(response) {
+  authent();
+}
+
+function authent(){
+  user_mail = get_data().user.mail;
+  password = get_data().user.password;
+  $.ajax({
+    url: url+"/authenticate",
+    type: "POST",
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify({"user":{"mail":user_mail, "password":password}}),
+    success: function(user){
+      user_token = user.token;
+      user_id = user.id;
+      user_mail = user.mail;
+      if(user_token && user_id && user_mail){
+        hide_registration_area();
+        init_stripe(user_mail);
+        show_payment_area();
+      }
+    },
+    error: function(result){
+      $("#error-form").html(result.responseJSON.message);
+      $("#error-form").show();
+    }
+  })
+}
+
+function hide_registration_area(){
+  $("#registration_area").hide();
+}
+
+function show_payment_area(){
+  $("#payment_area").show();
+}
+
+function get_data()
+{
+  var street_number
+  var street_name
+  var city
+  var zip_code
+  var state
+  var country
+  if(addr_selected){
+    street_number = addr_selected.street_number
+    street_name = addr_selected.street_name
+    city = addr_selected.city
+    zip_code = addr_selected.zip_code
+    state = addr_selected.state
+    country = addr_selected.country
+  }else{
+
+  }
+  return {
+    "user": {
+      "firstname": $("input[name='firstname']").val(),
+      "lastname" : $("input[name='lastname']").val(),
+      "nickname" : $("input[name='nickname']").val(),
+      "password" : $("input[name='password']").val(),
+      "password_confirmation": $("input[name='password_confirmation']").val(),
+      "mail": $("input[name='mail']").val(),
+      "birthdate": $("input[name='birthdate']").val(),
+      "gender_id": $("#gender-select").val(),
+      "team_name": $("input[name='team_name']").val(),
+      "favorite_game": $("input[name='favorite_game']").val(),
+      "dev": $("input[name='dev']:checked").val(),
+      "address": {
+        "number": street_number,
+        "street": street_name,
+        "locality": {
+          "name": city,
+          "postal_code": zip_code
+        },
+        "state": {
+          "name": state
+        },
+        "country": {
+          "name": country
+        }
+      }
+    }
+  };
+}
+
+function init_stripe(mail){
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_ugmGFrtxUlZhxI5Dg6Irr4qk',
+    name: "Swiss made games league",
+    description: "League registration",
+    email: mail,
+    locale: "en",
+    currency: "chf",
+    image: url+'/assets/images/smgl_logo.png',
+    token: function(token) {
+      $("#customButton").hide();
+      $.post(url+"/payments",
+      {
+        payment:{
+          stripeToken: token.id,
+          user_id: user_id,
+          user_token: user_token,
+          amount: 12
+        }
+      }).done(function(return_json_message) {
+        $("#payment-title").html(return_json_message.message+"!");
+        $("#customButton").hide();
+        $("#payment-tagline").hide();
+      }).fail(function(return_json_message) {
+        $("#error-payment").html(return_json_message.message);
+        $("#error-payment").show();
+        $("#customButton").show();
+      });
+    }
+  });
+  document.getElementById('customButton').addEventListener('click', function(e) {
+    handler.open({
+      amount: 12*100
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation:
+  window.addEventListener('popstate', function() {
+    handler.close();
+  });
+}
+</script>
