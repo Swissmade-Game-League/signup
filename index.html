@@ -450,8 +450,8 @@ function init_stripe(mail){
         $("#payment-title").html(return_json_message.message+"!");
         $("#customButton").hide();
         $("#payment-tagline").hide();
-      }).fail(function(return_json_message) {
-        $("#error-payment").html(return_json_message);
+      }).fail(function(return_json_message,e) {
+        $("#error-payment").html(return_json_message.responseJSON.message);
         $("#error-payment").show();
         $("#customButton").show();
       });
