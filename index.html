@@ -23,153 +23,184 @@
     <h1>Sign Up</h1>
   </div>
   <div class="container" style="padding-bottom:2em;">
-    <div id="registration_area">
-      <form class="form-horizontal"  accept-charset="UTF-8">
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="firstname">
-            First name *
-          </label>
-          <div class="col-sm-9">
-            <input type="text" name="firstname" class="form-control" required="required">
+    <ul id="form_tabs" class="nav nav-tabs nav-justified">
+      <li id="registration_tab" role="registration" class="active">
+        <a href="#registration" aria-controls="registration" role="tab" data-toggle="tab">Registration</a>
+      </li>
+      <li id="login_tab" role="registration">
+        <a href="#login"aria-controls="login" role="tab" data-toggle="tab">Login</a>
+      </li>
+    </ul>
+    <div id="form_div" class="panel panel-default">
+      <div class="panel-body">
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="registration">
+            <div id="registration_area">
+              <form class="form-horizontal"  accept-charset="UTF-8">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="firstname">
+                    First name *
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" name="firstname" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="lastname">
+                    Last name *
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" name="lastname" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="nickname">
+                    Nickname *
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" name="nickname" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="password">
+                    Password *
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="password" name="password" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="password_confirmation">
+                    Confirm Password *
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="password" name="password_confirmation" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="mail">
+                    E-Mail *
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="email" name="mail" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="birthdate">
+                    Birthdate *
+                  </label>
+                  <div class="col-sm-9">
+                    <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                      <input type="text" name="birthdate" class="form-control" required="required" placeholder="yyyy-mm-dd">
+                      <div class="input-group-addon">
+                        <span class="fas fa-calendar-alt"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="gender">
+                    Gender *
+                  </label>
+                  <div class="col-sm-9">
+                    <select class="form-control" id="gender-select">
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="team_name">
+                    Team name
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" name="team_name" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="favorite_game">
+                    What's your favorite game ?
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" name="favorite_game" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="dev">
+                    Are you a game developper ? *
+                  </label>
+                  <div class="col-sm-9">
+                    <label class="radio-inline"><input type="radio" name="dev" value="true">Yes</label>
+                    <label class="radio-inline"><input type="radio" name="dev" value="false">No</label>
+                  </div>
+                </div>
+              </form>
+
+
+              <div class="row">
+                <div class="col-sm-3 text-right">
+                  <h3> Address </h3>
+                </div>
+              </div>
+              <form class="form-horizontal" id="new_address_form" accept-charset="UTF-8" data-remote="true">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="street-modal-markup">
+                    Street and n°
+                  </label>
+                  <div class="col-sm-9">
+                    <select name="address[street]" id="street-modal-markup" class="form-control select2-hidden-accessible" style="width:100%;" tabindex="-1" aria-hidden="true"></select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 col-xs-12 control-label" for="locality-modal-markup">Locality</label>
+                  <div class="col-sm-2 col-xs-4">
+                    <input type="text" name="postal_code" id="postal_code-modal-markup" class="form-control" readonly="readonly" required="required">
+                  </div>
+                  <div class="col-sm-7 col-xs-8">
+                    <input type="text" name="locality" id="locality-modal-markup" class="form-control" readonly="readonly" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="state-modal-markup">State</label>
+                  <div class="col-sm-9">
+                    <input type="text" name="state" id="state-modal-markup" class="form-control" readonly="readonly" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="country-modal-markup">Country</label>
+                  <div class="col-sm-9">
+                    <input type="text" name="country" id="country-modal-markup" class="form-control" readonly="readonly" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-offset-3 col-sm-9">
+                    <label>
+                      <input type="checkbox" id="rules-check"> I read and accept the <a href="https://smgl.ch/rules/2018" required="required">rules</a>
+                    </label>
+                  </div>
+                </div>
+              </form>
+              <div class="text-center">
+                <div id="error-form" class="alert alert-danger" role="alert" hidden="true"></div>
+                <button id="submit_btn" type="button" class="btn btn-primary" disabled="true">Register</button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="lastname">
-            Last name *
-          </label>
-          <div class="col-sm-9">
-            <input type="text" name="lastname" class="form-control" required="required">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="nickname">
-            Nickname *
-          </label>
-          <div class="col-sm-9">
-            <input type="text" name="nickname" class="form-control" required="required">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="password">
-            Password *
-          </label>
-          <div class="col-sm-9">
-            <input type="password" name="password" class="form-control" required="required">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="password_confirmation">
-            Confirm Password *
-          </label>
-          <div class="col-sm-9">
-            <input type="password" name="password_confirmation" class="form-control" required="required">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="mail">
-            E-Mail *
-          </label>
-          <div class="col-sm-9">
-            <input type="email" name="mail" class="form-control" required="required">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="birthdate">
-            Birthdate *
-          </label>
-          <div class="col-sm-9">
-            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-              <input type="text" name="birthdate" class="form-control" required="required" placeholder="yyyy-mm-dd">
-              <div class="input-group-addon">
-                <span class="fas fa-calendar-alt"></span>
+          <div role="tabpanel" class="tab-pane" id="login">
+            <div id="login_area">
+              <div>
+                <div class="form-group">
+                  <label for="log_mail">Email address</label>
+                  <input type="email" class="form-control" id="log_mail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label for="log_passwd">Password</label>
+                  <input type="password" class="form-control" id="log_passwd" placeholder="Password">
+                </div>
+                <div id="error-login-form" class="alert alert-danger" role="alert" hidden="true"></div>
+                <button id="login_btn" class="btn btn-default">Login</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="gender">
-            Gender *
-          </label>
-          <div class="col-sm-9">
-            <select class="form-control" id="gender-select">
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="team_name">
-            Team name
-          </label>
-          <div class="col-sm-9">
-            <input type="text" name="team_name" class="form-control" required="required">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="favorite_game">
-            What's your favorite game ?
-          </label>
-          <div class="col-sm-9">
-            <input type="text" name="favorite_game" class="form-control" required="required">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label" for="dev">
-            Are you a game developper ? *
-          </label>
-          <div class="col-sm-9">
-            <label class="radio-inline"><input type="radio" name="dev" value="true">Yes</label>
-            <label class="radio-inline"><input type="radio" name="dev" value="false">No</label>
-          </div>
-        </div>
-      </form>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3 text-right">
-            <h3> Address </h3>
-          </div>
-        </div>
-        <form class="form-horizontal" id="new_address_form" accept-charset="UTF-8" data-remote="true">
-          <div class="form-group">
-            <label class="col-sm-3 control-label" for="street-modal-markup">
-              Street and n°
-            </label>
-            <div class="col-sm-9">
-              <select name="address[street]" id="street-modal-markup" class="form-control select2-hidden-accessible" style="width:100%;" tabindex="-1" aria-hidden="true"></select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 col-xs-12 control-label" for="locality-modal-markup">Locality</label>
-            <div class="col-sm-2 col-xs-4">
-              <input type="text" name="postal_code" id="postal_code-modal-markup" class="form-control" readonly="readonly" required="required">
-            </div>
-            <div class="col-sm-7 col-xs-8">
-              <input type="text" name="locality" id="locality-modal-markup" class="form-control" readonly="readonly" required="required">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" for="state-modal-markup">State</label>
-            <div class="col-sm-9">
-              <input type="text" name="state" id="state-modal-markup" class="form-control" readonly="readonly" required="required">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" for="country-modal-markup">Country</label>
-            <div class="col-sm-9">
-              <input type="text" name="country" id="country-modal-markup" class="form-control" readonly="readonly" required="required">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-offset-3 col-sm-9">
-              <label>
-                <input type="checkbox" id="rules-check"> I read and accept the <a href="https://smgl.ch/rules/2018" required="required">rules</a>
-              </label>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="container text-center">
-        <div id="error-form" class="alert alert-danger" role="alert" hidden="true"></div>
-        <button id="submit_btn" type="button" class="btn btn-primary" disabled="true">Register</button>
       </div>
     </div>
     <div id="payment_area" style="display:none;">
@@ -220,7 +251,7 @@
         </p>
         <div class="col-md-12">
           <button id="customButton" class="btn btn-primary btn-lg" style="width:100%;font-size:32px;">
-            Pay by card
+            12 CHF Pay by card
             <span class="fab fa-cc-visa" aria-hidden="true"></span>
             <span class="fab fa-cc-mastercard" aria-hidden="true"></span>
             <span class="fab fa-cc-visa" aria-hidden="true"></span>
@@ -241,6 +272,7 @@ var user_mail;
 $( document ).ready(function() {
   init_select2();
   init_post_btn();
+  init_login_btn();
   $.ajax({
     url: url+"/genders",
     type: "GET",
@@ -342,12 +374,18 @@ function init_post_btn(){
 }
 
 var road_to_payment = function(response) {
-  authent();
+  authent(get_data().user.mail, get_data().user.password);
 }
 
-function authent(){
-  user_mail = get_data().user.mail;
-  password = get_data().user.password;
+function init_login_btn(){
+  $("#login_btn").click(function(){
+    user_mail = $("#log_mail").val();
+    password = $("#log_passwd").val();
+    authent(user_mail, password);
+  });
+}
+
+function authent(user_mail, password){
   $.ajax({
     url: url+"/authenticate",
     type: "POST",
@@ -358,20 +396,35 @@ function authent(){
       user_id = user.id;
       user_mail = user.mail;
       if(user_token && user_id && user_mail){
-        hide_registration_area();
+        hide_form_area();
         init_stripe(user_mail);
         show_payment_area();
       }
     },
     error: function(result){
-      $("#error-form").html(result.responseJSON.message);
-      $("#error-form").show();
+      active_tab_id = $("ul#form_tabs li.active")[0].id
+      if(active_tab_id == "registration_tab"){
+        $("#error-form").html(result.responseJSON.message);
+        $("#error-form").show();
+      }else{
+        $("#error-login-form").html(result.responseJSON.message);
+        $("#error-login-form").show();
+      }
     }
   })
 }
 
+function hide_form_area(){
+  $("#form_tabs").hide();
+  $("#form_div").hide();
+}
+
 function hide_registration_area(){
   $("#registration_area").hide();
+}
+
+function hide_login_area(){
+  $("#login_area").hide();
 }
 
 function show_payment_area(){
