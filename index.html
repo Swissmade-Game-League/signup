@@ -305,8 +305,8 @@ function init_select2(){
       },
       processResults: function (data) {
         if(data){
-          data.text = data.formatted_address;
-          data.id = data.street_name;
+          data.text = data.street+", "+data.postal_code+" "+data.locality+" "+data.country;
+          data.id = data.street;
           ress.push(data);
         }
         return {
@@ -319,9 +319,11 @@ function init_select2(){
 }
 
 function format_select2_selection(item){
-  var result = item.street_name+" ";
-  if(item.street_number){
-    result += item.street_number;
+  var result = item.street+" ";
+  var street_number = result.match(/\d/g);
+  street_number = street_number.join("");
+  if(street_number){
+    item.street_number = street_number
   }
   select2_changed(item);
   return result;
@@ -335,10 +337,10 @@ function select2_changed(addr){
       name: 'address[number]',
       value: addr.street_number
     }).appendTo('#new_address_form');
-    $("#locality-modal-markup")[0].value = addr.city;
-    $("#state-modal-markup")[0].value = addr.state;
+    $("#locality-modal-markup")[0].value = addr.locality;
+    $("#state-modal-markup")[0].value = addr.region;
     $("#country-modal-markup")[0].value = addr.country;
-    $("#postal_code-modal-markup")[0].value = addr.zip_code;
+    $("#postal_code-modal-markup")[0].value = addr.postal_code;
     if ($('#rules-check').is(':checked')) {
       $('#submit_btn').prop('disabled', false);
     }
@@ -441,10 +443,10 @@ function get_data()
   var country
   if(addr_selected){
     street_number = addr_selected.street_number
-    street_name = addr_selected.street_name
-    city = addr_selected.city
-    zip_code = addr_selected.zip_code
-    state = addr_selected.state
+    street_name = addr_selected.street
+    city = addr_selected.locality
+    zip_code = addr_selected.postal_code
+    state = addr_selected.region
     country = addr_selected.country
   }else{
 
